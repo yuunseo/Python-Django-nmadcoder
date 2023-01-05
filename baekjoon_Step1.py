@@ -51,10 +51,17 @@ print(((a%c)+(b%c))%c)
 print((a*b)%c)
 print(((a%c)*(b%c)%c))'''
 
-'''2588번'''
-one,two = input().split()
+'''2588번
+one = input()
+two = input()
 
 print(int(one)*int(two[-1]))
 print(int(one)*int(two[1]))
 print(int(one)*int(two[0]))
-print(int(one)*int(two))
+print(int(one)*int(two))'''
+
+'''10171번'''
+print("\    /\\")
+print(" )  ( ')")
+print("(  /  )")
+print(" \(__)|")
