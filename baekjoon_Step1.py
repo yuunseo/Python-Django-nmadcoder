@@ -40,7 +40,7 @@ for i in answer:
     print(i,end=' ')'''
 
 
-'''10430번'''
+'''10430번
 a,b,c = input().split()
 a = int(a)
 b = int(b)
@@ -49,4 +49,12 @@ c = int(c)
 print((a+b)%c)
 print(((a%c)+(b%c))%c)
 print((a*b)%c)
-print(((a%c)*(b%c)%c))
+print(((a%c)*(b%c)%c))'''
+
+'''2588번'''
+one,two = input().split()
+
+print(int(one)*int(two[-1]))
+print(int(one)*int(two[1]))
+print(int(one)*int(two[0]))
+print(int(one)*int(two))
