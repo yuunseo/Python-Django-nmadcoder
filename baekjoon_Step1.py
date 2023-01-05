@@ -21,7 +21,7 @@ print(name+"??!")'''
 '''18108번 문제
 print(int(input())-543)'''
 
-'''3003번 문제'''
+'''3003번 문제
 a,b,c,d,e,f = input().split()
 data = ['1','1','2','2','2','8']
 num = [a,b,c,d,e,f]
@@ -37,6 +37,16 @@ for i in data:
     Count += 1
 
 for i in answer:
-    print(i,end=' ')
+    print(i,end=' ')'''
 
 
+'''10430번'''
+a,b,c = input().split()
+a = int(a)
+b = int(b)
+c = int(c)
+
+print((a+b)%c)
+print(((a%c)+(b%c))%c)
+print((a*b)%c)
+print(((a%c)*(b%c)%c))
