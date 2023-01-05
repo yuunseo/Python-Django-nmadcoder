@@ -60,8 +60,18 @@ print(int(one)*int(two[1]))
 print(int(one)*int(two[0]))
 print(int(one)*int(two))'''
 
-'''10171번'''
+'''10171번
 print("\    /\\")
 print(" )  ( ')")
 print("(  /  )")
-print(" \(__)|")
+print(" \(__)|") '''
+
+'''10172번
+print("|\\_/|")
+print("|q p|   /}")
+print("( 0 )\"\"\"\\")
+print('|\"^\"`    |')
+print("||_/=\\\__|")
+
+문자열 내에서 \를 사용하고 싶을 땐, \\
+문자열 내에서 "를 사용하고 싶을 땐, \"    '''
