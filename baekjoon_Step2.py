@@ -9,7 +9,7 @@ elif(a>b):
 else:
     print("==")'''
 
-'''9498번'''
+'''9498번
 score = int(input())
 if(score>=90):
     print("A")
@@ -20,4 +20,11 @@ elif(score>=70):
 elif(score>=60):
     print("D")
 else:
-    print("F")
+    print("F")'''
+
+'''2753번'''
+year =int(input())
+if(year%4==0 and (year%100 != 0 or year%400 == 0)):
+    print(1)
+else:
+    print(0)
