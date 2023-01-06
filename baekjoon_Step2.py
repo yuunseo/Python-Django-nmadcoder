@@ -41,7 +41,7 @@ elif(x<0 and y>0):
 else:
     print(3)'''
 
-'''2884번'''
+'''2884번
 h, m = input().split()
 h = int(h)
 m = int(m)
@@ -52,4 +52,19 @@ else:
     if(h==0):
         print(23,60-(45-m))
     else:
-        print(h-1,60-(45-m))
+        print(h-1,60-(45-m))'''
+
+'''2525번'''
+now_h, now_m = input().split()
+now_h = int(now_h)
+now_m = int(now_m)
+m = int(input())
+
+if(now_m + m<= 60):
+    print(now_h,now_m+m)
+else:
+    fin_h =now_h+(now_m+m)//60
+    if(fin_h >=24):
+        print(fin_h - 24,(now_m+m)%60)
+    else:
+        print(fin_h,(now_m+m)%60)
