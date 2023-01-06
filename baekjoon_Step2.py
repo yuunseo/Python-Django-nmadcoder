@@ -29,7 +29,7 @@ if(year%4==0 and (year%100 != 0 or year%400 == 0)):
 else:
     print(0)'''
 
-'''14681번'''
+'''14681번
 x = int(input())
 y = int(input())
 if(x>0 and y>0):
@@ -39,4 +39,17 @@ elif(x>0 and y<0):
 elif(x<0 and y>0):
     print(2)
 else:
-    print(3)
+    print(3)'''
+
+'''2884번'''
+h, m = input().split()
+h = int(h)
+m = int(m)
+
+if(m >= 45):
+    print(h,m-45)
+else:
+    if(h==0):
+        print(23,60-(45-m))
+    else:
+        print(h-1,60-(45-m))
