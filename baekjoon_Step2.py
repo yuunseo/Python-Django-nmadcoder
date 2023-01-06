@@ -22,9 +22,21 @@ elif(score>=60):
 else:
     print("F")'''
 
-'''2753번'''
+'''2753번
 year =int(input())
 if(year%4==0 and (year%100 != 0 or year%400 == 0)):
     print(1)
 else:
-    print(0)
+    print(0)'''
+
+'''14681번'''
+x = int(input())
+y = int(input())
+if(x>0 and y>0):
+    print(1)
+elif(x>0 and y<0):
+    print(4)
+elif(x<0 and y>0):
+    print(2)
+else:
+    print(3)
