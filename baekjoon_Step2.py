@@ -54,17 +54,29 @@ else:
     else:
         print(h-1,60-(45-m))'''
 
-'''2525번'''
-now_h, now_m = input().split()
-now_h = int(now_h)
-now_m = int(now_m)
-m = int(input())
+'''2525번'
+h,m = map(int,input().split())
+t = int(input())
 
-if(now_m + m<= 60):
-    print(now_h,now_m+m)
+h += t//60
+m += t %60
+
+if(m >= 60):
+    h += 1
+    m -= 60
+if(h>=24):
+    h -= 24
+print(h,m)'''
+
+'''2480번'''
+a,b,c = map(int,input().split())
+if(a==b==c):
+    print(10000+a*1000)
 else:
-    fin_h =now_h+(now_m+m)//60
-    if(fin_h >=24):
-        print(fin_h - 24,(now_m+m)%60)
+    if(a==b!=c or a==c!=b):
+        print(1000+a*100)
+    elif(b==c!=a):
+        print(1000+b*100)
     else:
-        print(fin_h,(now_m+m)%60)
+        list=[a,b,c]
+        print(100*max(list))
