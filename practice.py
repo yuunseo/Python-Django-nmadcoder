@@ -1,3 +1,3 @@
-num1 = int(input("1: "))
-num2 = int(input("2: "))
-print(num1+num2)
+
+        
+print(sum(i if i <3 else -i for i in range(5)))
