@@ -68,7 +68,7 @@ if(h>=24):
     h -= 24
 print(h,m)'''
 
-'''2480번'''
+'''2480번
 a,b,c = map(int,input().split())
 if(a==b==c):
     print(10000+a*1000)
@@ -79,4 +79,4 @@ else:
         print(1000+b*100)
     else:
         list=[a,b,c]
-        print(100*max(list))
+        print(100*max(list))'''
