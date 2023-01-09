@@ -29,7 +29,7 @@ if(total == 0):
 else:
     print("No")'''
 
-'''15552번'''
+'''15552번
 import sys
 count=int(sys.stdin.readline())
 answer=[]
@@ -38,6 +38,13 @@ for i in range(count):
     answer.append(num1+num2)
 
 for i in answer:
-    print(i)
+    print(i)'''
 
-
+'''11021번'''
+count = int(input())
+answer=[]
+for i in range(count):
+    num1, num2 = map(int,input().split())
+    answer.append(num1+num2)
+for i in range(len(answer)):
+    print(f"Case #{i}: {answer[i]}")
