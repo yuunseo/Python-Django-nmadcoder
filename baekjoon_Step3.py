@@ -12,8 +12,19 @@ for i in range(count):
 for i in answer:
     print(i)'''
 
-'''8393번'''
+'''8393번
 num = int(input())
-for i in range(num-1,1,-1):
+for i in range(num-1,0,-1):
     num += i
-print(num)
+print(num)'''
+
+'''25304번'''
+total = int(input())
+count = int(input())
+for i in range(count):
+    cost, num = input().split()
+    total -= int(cost)*int(num)
+if(total == 0):
+    print("Yes")
+else:
+    print("No")
