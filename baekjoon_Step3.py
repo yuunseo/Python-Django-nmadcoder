@@ -65,12 +65,20 @@ count = int(input())
 for i in range(1,count+1):
     print("{0:>{1}}".format("*"*i,count))'''
 
-'''10952번'''
+'''10952번
 a=1
 b=1
 answer=[]
 while(a!=0 and b!=0):
     a,b = map(int,input().split())
     answer.append(a+b)
-for i in answer:
-    print(i)
+for i in range(len(answer)-1):
+    print(answer[i])'''
+
+'''10951'''
+while(True):
+    try:
+        a,b = map(int,input().split())
+        print(a+b)
+    except:
+        break
