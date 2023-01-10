@@ -40,11 +40,17 @@ for i in range(count):
 for i in answer:
     print(i)'''
 
-'''11021번'''
+'''11021번
 count = int(input())
 answer=[]
 for i in range(count):
     num1, num2 = map(int,input().split())
     answer.append(num1+num2)
 for i in range(len(answer)):
-    print(f"Case #{i}: {answer[i]}")
+    print(f"Case #{i+1}: {answer[i]}'''
+
+'''11022번'''
+count = int(input())
+answer = [list(map(int, input().split())) for i in range(count)]
+for i in range(len(answer)):
+    print(f"Case #{i+1}: {answer[i][0]} + {answer[i][1]} = {sum(answer[i])}")
