@@ -16,12 +16,16 @@ Count = int(input())
 num = list(map(int,input().split(" ")))
 print(min(num),max(num))'''
 
-'''2562번'''
+'''2562번
 num=[]
 while(True):
     num.append(int(input()))
     if(len(num)==9):
         break
-print(max(num),num.index(max(num))+1)
+print(max(num),num.index(max(num))+1)'''
 
-        
+'''5597번'''
+num=[int(input()) for i in range(28)]
+for i in range(1,31):
+    if(i not in num):
+        print(i)
