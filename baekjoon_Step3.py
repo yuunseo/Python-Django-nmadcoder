@@ -49,8 +49,13 @@ for i in range(count):
 for i in range(len(answer)):
     print(f"Case #{i+1}: {answer[i]}'''
 
-'''11022번'''
+'''11022번
 count = int(input())
 answer = [list(map(int, input().split())) for i in range(count)]
 for i in range(len(answer)):
-    print(f"Case #{i+1}: {answer[i][0]} + {answer[i][1]} = {sum(answer[i])}")
+    print(f"Case #{i+1}: {answer[i][0]} + {answer[i][1]} = {sum(answer[i])}")'''
+
+'''2438번'''
+count=int(input())
+for i in range(count):
+    print("*"*(i+1))
