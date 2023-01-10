@@ -75,10 +75,27 @@ while(a!=0 and b!=0):
 for i in range(len(answer)-1):
     print(answer[i])'''
 
-'''10951'''
+'''10951번
 while(True):
     try:
         a,b = map(int,input().split())
         print(a+b)
     except:
-        break
+        break'''
+
+'''1110번'''
+num = int(input())
+new = num
+count = 0
+while(True):
+    if(new <= 9):
+        new = new*10+new
+        count += 1
+        if(num == new):
+            break
+    else:
+        new = (new%10)*10 + (new//10 + new%10)%10
+        count += 1
+        if(num == new):
+            break
+print(count)
