@@ -60,7 +60,17 @@ count=int(input())
 for i in range(count):
     print("*"*(i+1))'''
 
-'''2439번'''
+'''2439번
 count = int(input())
 for i in range(1,count+1):
-    print("{0:>{1}}".format("*"*i,count))
+    print("{0:>{1}}".format("*"*i,count))'''
+
+'''10952번'''
+a=1
+b=1
+answer=[]
+while(a!=0 and b!=0):
+    a,b = map(int,input().split())
+    answer.append(a+b)
+for i in answer:
+    print(i)
