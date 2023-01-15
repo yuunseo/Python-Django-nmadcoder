@@ -30,9 +30,14 @@ for i in range(1,31):
     if(i not in num):
         print(i)'''
 
-'''3052번'''
+'''3052번
 result=[]
 for i in range(10):
     a = int(input())
     result.append(a%42)
-print(len(set(result)))
+print(len(set(result)))'''
+
+'''1546번'''
+count=int(input())
+score = list(map(int,input().split()))
+print(score)
