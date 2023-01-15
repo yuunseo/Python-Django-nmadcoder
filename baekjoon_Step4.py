@@ -46,7 +46,7 @@ for i in range(len(score)):
     result.append(score[i]/max(score)*100)
 print(sum(result)/len(result))'''
 
-'''8959번'''
+'''8959번
 count=int(input())
 prob=[]
 score=0
@@ -70,4 +70,16 @@ for i in prob:
             num = 0
     print(score)
     num=0
-    score=0
+    score=0'''
+
+'''4344번'''
+count = int(input())
+result = 0
+for i in range(count):
+    result = 0
+    stu, *score =map(int,input().split())
+    avg = sum(score) / len(score)
+    for j in score:
+        if(j > avg):
+            result += 1
+    print("{0:.3f}%".format((result/stu)*100))
