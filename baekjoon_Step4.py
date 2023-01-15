@@ -24,8 +24,15 @@ while(True):
         break
 print(max(num),num.index(max(num))+1)'''
 
-'''5597번'''
+'''5597번
 num=[int(input()) for i in range(28)]
 for i in range(1,31):
     if(i not in num):
-        print(i)
+        print(i)'''
+
+'''3052번'''
+result=[]
+for i in range(10):
+    a = int(input())
+    result.append(a%42)
+print(len(set(result)))
