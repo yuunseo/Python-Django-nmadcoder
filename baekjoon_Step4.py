@@ -37,7 +37,37 @@ for i in range(10):
     result.append(a%42)
 print(len(set(result)))'''
 
-'''1546번'''
+'''1546번
 count=int(input())
 score = list(map(int,input().split()))
-print(score)
+
+result=[]
+for i in range(len(score)):
+    result.append(score[i]/max(score)*100)
+print(sum(result)/len(result))'''
+
+'''8959번'''
+count=int(input())
+prob=[]
+score=0
+num=0
+for i in range(count):
+    prob.append(input())
+for i in prob:
+    for j in range(len(i)):
+        if(j == 0):
+            if(i[j]=="O"):
+                num += 1
+                score += 1
+        elif(j!=0 and i[j]=="O"):
+            if(i[j-1]=="O"):
+                num+=1
+                score+= 1*num
+            else:
+                num+=1
+                score+= 1
+        else:
+            num = 0
+    print(score)
+    num=0
+    score=0
