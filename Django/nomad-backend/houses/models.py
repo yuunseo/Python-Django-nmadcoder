@@ -6,6 +6,6 @@ class House(models.Model):
     """Model Definition About Houses"""
 
     name = models.CharField(max_length=140)
-    price = models.PositiveBigIntegerField()
+    price_per_night = models.PositiveBigIntegerField()
     description = models.TextField()
     address = models.CharField(max_length=140)
