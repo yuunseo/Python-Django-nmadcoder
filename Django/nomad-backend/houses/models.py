@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Houses(models.Model):
+class House(models.Model):
 
     """Model Definition About Houses"""
 
