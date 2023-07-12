@@ -5,6 +5,12 @@ from .models import House
 @admin.register(House)
 class HouseAdmin(admin.ModelAdmin):
     
+    fields = (
+        "name",
+        "address",
+        ("price_per_night","pet_allowed",),
+    )
+
     list_display = ("name", 
         "price_per_night",
         "address",
@@ -14,3 +20,5 @@ class HouseAdmin(admin.ModelAdmin):
         "pet_allowed")
 
     search_fields = ("address",)
+
+    list_editable = ("pet_allowed",)
