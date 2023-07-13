@@ -5,4 +5,31 @@ from .models import User
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
-    pass
+    fieldsets = (
+        ("Profile",
+        {   "fields": (
+                    "username",
+                    "password",
+                    "name",
+                    "email",
+                    "is_host")
+            },
+        ),
+        ("Permissions",
+        {   "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
+                ),
+                "classes": ("collapse",)
+            },
+        ),
+        ("Important Dates",
+         {"fields": ("last_login", "date_joined"),
+          "classes": ("collapse",)},
+         ),
+    )
+
+    
