@@ -38,6 +38,7 @@ class User(AbstractUser):
         default=False,
     )
     avatar = models.ImageField(
+        null=True,
         blank=True,
     )
     gender = models.CharField(

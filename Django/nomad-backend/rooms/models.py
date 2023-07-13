@@ -21,7 +21,9 @@ class Room(CommonModel):
         default="서울",
     )
     price = models.PositiveIntegerField()
+    rooms = models.PositiveIntegerField()
     toilets = models.PositiveIntegerField()
+    description = models.TextField(null=True)
     address = models.CharField(max_length=250)
     pet_friendly = models.BooleanField(default=True)
     kind = models.CharField(
@@ -45,4 +47,5 @@ class Amenity(CommonModel):
     description = models.CharField(
         max_length=150,
         null=True,
+        blank=True,
     )
