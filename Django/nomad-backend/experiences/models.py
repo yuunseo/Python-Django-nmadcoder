@@ -28,6 +28,12 @@ class Experience(CommonModel):
     start = models.TimeField()
     end = models.TimeField()
     pekrs = models.ManyToManyField("experiences.Perk")
+    categoryy = models.ForeignKey(
+        "categories.Category",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
 
     def __str__(self):
         return self.name
