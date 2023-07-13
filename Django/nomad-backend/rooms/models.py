@@ -26,7 +26,7 @@ class Room(CommonModel):
     pet_friendly = models.BooleanField(default=True)
     kind = models.CharField(
         max_length=20,
-        choices=RoomKindChoices,
+        choices=RoomKindChoices.choices,
     )
     owner = models.ForeignKey(
         "users.User",
