@@ -31,6 +31,7 @@ class Room(models.Model):
         "users.User",
         on_delete=models.CASCADE,
     )
+    amenities = models.ManyToManyField("rooms.Amenity")
 
 
 class Amenity(models.Model):
