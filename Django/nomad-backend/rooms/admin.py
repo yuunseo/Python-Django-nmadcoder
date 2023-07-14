@@ -10,8 +10,11 @@ class RoomAdmin(admin.ModelAdmin):
         "price",
         "kind",
         "total_amenities",
+        "rating",
         "owner",
     )
+
+    search_fields = ("owner__usename",)
 
     list_filter = (
         "country",
