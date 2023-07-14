@@ -14,18 +14,24 @@ class Booking(CommonModel):
         max_length=15,
         choices=KindChoices.choices,
     )
-    user = models.ForeignKey("users.User", on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        "users.User",
+        on_delete=models.CASCADE,
+        related_name="bookings",
+    )
     rooms = models.ForeignKey(
         "rooms.Room",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
+        related_name="bookings",
     )
     experiences = models.ForeignKey(
         "experiences.Experience",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
+        related_name="bookings",
     )
     check_in = models.DateField()
     check_out = models.DateField()

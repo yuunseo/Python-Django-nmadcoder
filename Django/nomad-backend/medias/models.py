@@ -14,12 +14,14 @@ class Photo(CommonModel):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
+        related_name="photos",
     )
     experiences = models.ForeignKey(
         "experiences.Experience",
         on_delete=models.CASCADE,
         null=True,
         blank=True,
+        related_name="photos",
     )
 
     def __str__(self):
@@ -32,7 +34,8 @@ class Video(CommonModel):
 
     file = models.FileField()
     experiences = models.OneToOneField(
-        "experiences.Experience", on_delete=models.CASCADE
+        "experiences.Experience",
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):

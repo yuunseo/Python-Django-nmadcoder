@@ -10,6 +10,7 @@ class Review(CommonModel):
     user = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
+        related_name="reviews",
     )
 
     experiences = models.ForeignKey(
@@ -17,6 +18,7 @@ class Review(CommonModel):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
+        related_name="reviews",
     )
 
     rooms = models.ForeignKey(
@@ -24,6 +26,7 @@ class Review(CommonModel):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
+        related_name="reviews",
     )
     # room과 experience 한 가지만 했을 경우를 고려해, null과 blank 추가
 
