@@ -1,13 +1,17 @@
 from rest_framework import serializers
+from .models import Category
 
 
 class CategorySerializer(serializers.Serializer):
-    pk = serializers.IntegerField(read_only=True)
+    pk = serializers.IntegerField(read_only=True)  # POST에 안써줘도 error안남.
     name = serializers.CharField(
         required=True,
         max_length=50,
     )
-    kind = serializers.CharField(
-        max_length=15,
+    kind = serializers.ChoiceField(
+        choices=Category.CategoryKindChoices.choices,
     )
     created_at = serializers.DateTimeField(read_only=True)
+
+    def create(self, validated_data):
+        return Category.objects.create(**validated_data)
