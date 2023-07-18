@@ -8,7 +8,20 @@ class AmenitySerializer(ModelSerializer):
         fields = "__all__"
 
 
-class RoomSerializer(ModelSerializer):
+class RoomListSerializer(ModelSerializer):
+    class Meta:
+        model = Room
+        fields = (
+            "name",
+            "pk",
+            "country",
+            "price",
+            "city",
+        )
+        depth = 1
+
+
+class RoomDetailSerializer(ModelSerializer):
     class Meta:
         model = Room
         fields = "__all__"
