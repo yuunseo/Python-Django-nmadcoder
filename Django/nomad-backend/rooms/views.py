@@ -69,16 +69,16 @@ class Rooms(APIView):
         if request.user.is_authenticated:
             serializer = RoomDetailSerializer(data=request.data)
             if serializer.is_valid():
-                category_pk = request.data.category
+                category_pk = request.data.get("categoryy")
                 if not category_pk:
                     raise ParseError
                 try:
-                    category = Category.objects.get(pk=category_pk)
-                    if category.kind == Category.CategoryKindChoices.EXPERIENCES:
+                    d_category = Category.objects.get(pk=category_pk)
+                    if d_category.kind == Category.CategoryKindChoices.EXPERIENCES:
                         raise ParseError
                 except Category.DoesNotExist:
                     raise ParseError
-                new_room = serializer.save(owner=request.user, categoryy=category)
+                new_room = serializer.save(owner=request.user, categoryy=d_category)
                 return Response(RoomDetailSerializer(new_room).data)
             else:
                 return Response(serializer.errors)
