@@ -5,6 +5,7 @@ from rest_framework.exceptions import ParseError, NotFound, NotAuthenticated
 from .models import Amenity, Room
 from .serializers import AmenitySerializer, RoomListSerializer, RoomDetailSerializer
 from categories.models import Category
+from django.db import transaction
 
 
 class Amenities(APIView):
@@ -78,17 +79,18 @@ class Rooms(APIView):
                         raise ParseError("The category kind should be 'rooms'.")
                 except Category.DoesNotExist:
                     raise ParseError("Category not found.")
-                new_room = serializer.save(
-                    owner=request.user,
-                    categoryy=d_category,
-                )
-                amenities = request.data.get("amenities")
-                for amenity_pk in amenities:
-                    try:
-                        amenity = Amenity.objects.get(pk=amenity_pk)
-                    except Amenity.DoesNotExist:
-                        raise ParseError(f"Amenity with id{amenity_pk} not found.")
-                    new_room.amenities.add(amenity)
+                try:
+                    with transaction.atomic():
+                        new_room = serializer.save(
+                            owner=request.user,
+                            categoryy=d_category,
+                        )
+                        amenities = request.data.get("amenities")
+                        for amenity_pk in amenities:
+                            amenity = Amenity.objects.get(pk=amenity_pk)
+                            new_room.amenities.add(amenity)
+                except Exception:
+                    raise ParseError("Amenity not found.")
                 return Response(RoomDetailSerializer(new_room).data)
             else:
                 return Response(serializer.errors)
