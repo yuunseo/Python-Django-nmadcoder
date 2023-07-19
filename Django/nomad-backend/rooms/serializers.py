@@ -16,11 +16,13 @@ class AmenitySerializer(ModelSerializer):
 
 class RoomListSerializer(ModelSerializer):
     rating_avg = SerializerMethodField()
+    is_owner = SerializerMethodField()
 
     class Meta:
         model = Room
         fields = (
             "name",
+            "is_owner",
             "rating_avg",
             "pk",
             "country",
@@ -31,6 +33,10 @@ class RoomListSerializer(ModelSerializer):
 
     def get_rating_avg(self, room):
         return room.rating()
+
+    def get_is_owner(self, room):
+        request = self.context["request"]
+        return request.user == room.owner
 
 
 class RoomDetailSerializer(ModelSerializer):
@@ -43,10 +49,16 @@ class RoomDetailSerializer(ModelSerializer):
         read_only=True,
     )
     rating_avg = SerializerMethodField()
+    is_owner = SerializerMethodField()
 
     class Meta:
         model = Room
         fields = "__all__"
 
     def get_rating_avg(self, room):
+        print(self.context)
         return room.rating()
+
+    def get_is_owner(self, room):
+        request = self.context["request"]
+        return request.user == room.owner
