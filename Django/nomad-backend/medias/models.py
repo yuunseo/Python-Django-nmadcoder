@@ -7,7 +7,7 @@ class Photo(CommonModel):
 
     """Media(Photo) Model Definition"""
 
-    file = models.ImageField()
+    file = models.URLField()
     description = models.TextField()
     rooms = models.ForeignKey(
         "rooms.Room",
@@ -32,7 +32,7 @@ class Video(CommonModel):
 
     """Media(Video) Model Definition"""
 
-    file = models.FileField()
+    file = models.URLField()
     experiences = models.OneToOneField(
         "experiences.Experience",
         on_delete=models.CASCADE,
