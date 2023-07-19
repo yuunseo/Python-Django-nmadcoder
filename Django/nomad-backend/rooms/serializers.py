@@ -3,6 +3,7 @@ from .models import Amenity, Room
 from users.serializers import TinyUserSerializer
 from categories.serializers import CategorySerializer
 from rest_framework.serializers import SerializerMethodField
+from reviews.serializers import ReviewSerializer
 
 
 class AmenitySerializer(ModelSerializer):
@@ -15,9 +16,6 @@ class AmenitySerializer(ModelSerializer):
 
 
 class RoomListSerializer(ModelSerializer):
-    rating_avg = SerializerMethodField()
-    is_owner = SerializerMethodField()
-
     class Meta:
         model = Room
         fields = (
@@ -31,6 +29,9 @@ class RoomListSerializer(ModelSerializer):
         )
         depth = 1
 
+    rating_avg = SerializerMethodField()
+    is_owner = SerializerMethodField()
+
     def get_rating_avg(self, room):
         return room.rating()
 
@@ -40,6 +41,10 @@ class RoomListSerializer(ModelSerializer):
 
 
 class RoomDetailSerializer(ModelSerializer):
+    class Meta:
+        model = Room
+        fields = "__all__"
+
     owner = TinyUserSerializer(read_only=True)
     amenities = AmenitySerializer(
         many=True,
@@ -50,10 +55,10 @@ class RoomDetailSerializer(ModelSerializer):
     )
     rating_avg = SerializerMethodField()
     is_owner = SerializerMethodField()
-
-    class Meta:
-        model = Room
-        fields = "__all__"
+    reviews = ReviewSerializer(
+        many=True,
+        read_only=True,
+    )
 
     def get_rating_avg(self, room):
         print(self.context)
