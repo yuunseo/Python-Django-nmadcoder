@@ -16,7 +16,7 @@ from reviews.serializers import ReviewSerializer
 from medias.serializers import PhotoSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from bookings.models import Booking
-from bookings.serializers import PublicBookingSerializer
+from bookings.serializers import CreateRoomBookingSerializer, PublicBookingSerializer
 
 
 class Amenities(APIView):
@@ -276,3 +276,11 @@ class RoomBookings(APIView):
             many=True,
         )
         return Response(serializer.data)
+
+    def post(self, request, pk):
+        room = self.get_object(pk)
+        serializer = CreateRoomBookingSerializer(data=request.data)
+        if serializer.is_valid():
+            return Response({"ok": True})
+        else:
+            return Response(serializer.errors)
