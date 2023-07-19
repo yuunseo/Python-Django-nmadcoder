@@ -25,9 +25,6 @@ class RoomListSerializer(ModelSerializer):
         )
         depth = 1
 
-    def create(self, validated_data):
-        return Room.objects.create(**validated_data)
-
 
 class RoomDetailSerializer(ModelSerializer):
     owner = TinyUserSerializer(read_only=True)
