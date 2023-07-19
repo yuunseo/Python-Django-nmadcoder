@@ -11,9 +11,12 @@ from .models import Amenity, Room
 from .serializers import AmenitySerializer, RoomListSerializer, RoomDetailSerializer
 from categories.models import Category
 from django.db import transaction
+from django.utils import timezone
 from reviews.serializers import ReviewSerializer
 from medias.serializers import PhotoSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from bookings.models import Booking
+from bookings.serializers import PublicBookingSerializer
 
 
 class Amenities(APIView):
@@ -249,3 +252,27 @@ class RoomPhotos(APIView):
             return Response(serializer.data)
         else:
             return Response(serializer.errors)
+
+
+class RoomBookings(APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_object(self, pk):
+        try:
+            return Room.objects.get(pk=pk)
+        except Room.DoesNotExist:
+            return NotFound
+
+    def get(self, request, pk):
+        room = self.get_object(pk)
+        now = timezone.localtime(timezone.now()).date()
+        room_bookings = Booking.objects.filter(
+            rooms=room,
+            kind=Booking.KindChoices.ROOM,
+            check_in__gt=now,
+        )
+        serializer = PublicBookingSerializer(
+            room_bookings,
+            many=True,
+        )
+        return Response(serializer.data)
