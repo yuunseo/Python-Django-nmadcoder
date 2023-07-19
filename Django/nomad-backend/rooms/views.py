@@ -11,6 +11,7 @@ from .models import Amenity, Room
 from .serializers import AmenitySerializer, RoomListSerializer, RoomDetailSerializer
 from categories.models import Category
 from django.db import transaction
+from reviews.serializers import ReviewSerializer
 
 
 class Amenities(APIView):
@@ -167,3 +168,27 @@ class RoomDetail(APIView):
             return Response(RoomDetailSerializer(new_room).data)
         else:
             return Response(serializer.errors)
+
+
+class RoomReviews(APIView):
+    def get_object(self, pk):
+        try:
+            return Room.objects.get(pk=pk)
+        except Room.DoesNotExist:
+            return NotFound
+
+    def get(self, request, pk):
+        try:
+            page = request.query_params.get("page", 1)
+            page = int(page)
+        except ValueError:
+            page = 1
+            page_size = 3
+            start = (page - 1) * page_size
+            end = start + page_size
+            room = self.get_object(pk)
+            serializer = ReviewSerializer(
+                room.reviews.all()[0:3],
+                many=True,
+            )
+            return Response(serializer.data)
