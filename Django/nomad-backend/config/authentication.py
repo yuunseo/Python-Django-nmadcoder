@@ -13,3 +13,7 @@ class TrustMeBroAuthentication(BaseAuthentication):
             return (user, None)
         except User.DoesNotExist:
             return AuthenticationFailed(f"No user {username}")
+
+
+class TokenAuthentication(BaseAuthentication):
+    pass
