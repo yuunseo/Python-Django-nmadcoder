@@ -1,5 +1,5 @@
 from rest_framework.views import APIView
-from rest_framework.status import HTTP_204_NO_CONTENT
+from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 from rest_framework.response import Response
 from rest_framework.exceptions import (
     PermissionDenied,
@@ -35,7 +35,10 @@ class Amenities(APIView):
                 AmenitySerializer(amenity).data
             )  # 새롭게 업데이트 된 정보를 다시 JSON으로 내보내고 있다.
         else:
-            return Response(serializer.errors)
+            return Response(
+                serializer.errors,
+                status=HTTP_400_BAD_REQUEST,
+            )
 
 
 class AmenityDetail(APIView):
