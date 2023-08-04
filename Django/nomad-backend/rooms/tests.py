@@ -1,3 +1,4 @@
+# django에 내장된 class가 아닌 DRF에 내장된 class를 사용
 from rest_framework.test import APITestCase
 
 
