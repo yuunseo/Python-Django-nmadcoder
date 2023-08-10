@@ -85,3 +85,70 @@ class TestAmenities(APITestCase):
         # 에러 메세지 안에 담긴 "name"을 찾아.
         # "name"이 에러 메세지 안에 담겨있다면 "name"에서 error 발생인거지.
         self.assertIn("name", data)
+
+
+class TestAmenity(APITestCase):
+    NAME = "Test Amenity"
+    DESC = "Test Des"
+    UPDATED_NAME = "Updated name"
+    UPDATED_DESC = "Updated description"
+
+    # test를 위한 database생성
+    def setUp(self):
+        models.Amenity.objects.create(
+            name=self.NAME,
+            description=self.DESC,
+        )
+
+    # get_object handler
+    def test_amenity_not_found(self):
+        response = self.client.get("/api/v1/rooms/amenities/2")
+        self.assertEqual(response.status_code, 404)
+
+    # get handler
+    def test_get_amenity(self):
+        # amenity가 존재하지 않음 확인
+        self.test_amenity_not_found()
+
+        # amenity가 존재함 확인
+        response = self.client.get("/api/v1/rooms/amenities/1")
+        self.assertEqual(response.status_code, 200)
+
+        # amenity가 동일한 지 확인
+        data = response.json()
+        self.assertEqual(data["name"], self.NAME)
+        self.assertEqual(data["description"], self.DESC)
+
+    # put handler
+    def test_put_amenity(self):
+        # failed case
+        failed_name = "aaaaaaaaaaaaaaaaaaaaaa"
+
+        # amenity가 존재하지 않음 확인
+        self.test_amenity_not_found()
+
+        response = self.client.put(
+            "/api/v1/rooms/amenities/1",
+            amenity=models.Amenity.objects.get(pk=1),
+            data={
+                "name": self.UPDATED_NAME,
+                "description": self.UPDATED_DESC,
+            },
+        )
+
+        data = response.json()
+        self.assertEqual(data["name"], self.UPDATED_NAME)
+        self.assertEqual(data["description"], self.UPDATED_DESC)
+        self.assertEqual(response.status_code, 200)
+
+        fail_response = self.client.put(
+            "/api/v1/rooms/amenities/1",
+            data={"name": failed_name},
+        )
+        data = fail_response.json()
+        self.assertEqual(fail_response.status_code, 400)
+
+    # delete handler
+    def test_delete_amenity(self):
+        response = self.client.delete("/api/v1/rooms/amenities/1")
+        self.assertEqual(response.status_code, 204)
