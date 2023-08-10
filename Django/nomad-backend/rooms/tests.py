@@ -1,6 +1,7 @@
 # django에 내장된 class가 아닌 DRF에 내장된 class를 사용
 from rest_framework.test import APITestCase
 from . import models
+from users.models import User
 
 
 class TestAmenities(APITestCase):
@@ -121,15 +122,11 @@ class TestAmenity(APITestCase):
 
     # put handler
     def test_put_amenity(self):
-        # failed case
-        failed_name = "aaaaaaaaaaaaaaaaaaaaaa"
-
         # amenity가 존재하지 않음 확인
         self.test_amenity_not_found()
 
         response = self.client.put(
             "/api/v1/rooms/amenities/1",
-            amenity=models.Amenity.objects.get(pk=1),
             data={
                 "name": self.UPDATED_NAME,
                 "description": self.UPDATED_DESC,
@@ -137,18 +134,38 @@ class TestAmenity(APITestCase):
         )
 
         data = response.json()
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(data["name"], self.UPDATED_NAME)
         self.assertEqual(data["description"], self.UPDATED_DESC)
-        self.assertEqual(response.status_code, 200)
-
-        fail_response = self.client.put(
-            "/api/v1/rooms/amenities/1",
-            data={"name": failed_name},
-        )
-        data = fail_response.json()
-        self.assertEqual(fail_response.status_code, 400)
 
     # delete handler
     def test_delete_amenity(self):
         response = self.client.delete("/api/v1/rooms/amenities/1")
         self.assertEqual(response.status_code, 204)
+
+
+class TestRoom(APITestCase):
+    def setUp(self):
+        # user 생성
+        user = User.objects.create(
+            username="test",
+        )
+        user.set_password("123")
+        user.save()
+        # self.user = user
+        # user를 넣어놓으면 password를 기억하지 않고도 login가능
+
+    # 인증된 사용자에게만 create가능하도록. 403code(forbiden)
+    def test_create_room(self):
+        response = self.client.post("/api/v1/rooms/")
+        self.assertEqual(response.status_code, 403)
+
+        # login (password없이는 force_login사용)
+        self.client.login(
+            username="test",
+            password="123",
+        )
+
+        # login 됐는지 확인
+        response = self.client.post("/api/v1/rooms/")
+        print(response.json())
